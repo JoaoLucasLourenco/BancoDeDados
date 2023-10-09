@@ -15,7 +15,7 @@ CREATE TABLE moderador (
     Senha NVARCHAR(50)
 );
 
---Opções
+--OpÃ§Ãµes
 CREATE TABLE opcoes(
 	idOpcao INT PRIMARY KEY,
     opcao NVARCHAR(255),
@@ -90,10 +90,8 @@ CREATE TABLE perguntasAbertasApp (
 -- Tabela tutorial
 CREATE TABLE tutorial (
     IdTutorial INT PRIMARY KEY,
-    IdApp INT,
 	nome NVARCHAR(255),
-    caminhoArquivo NVARCHAR(MAX),
-    FOREIGN KEY (idApp) REFERENCES App(idApp)
+    caminhoArquivo NVARCHAR(MAX)
 );
 
 --Relacionando tutorial com app
