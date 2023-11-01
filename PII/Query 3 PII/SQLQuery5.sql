@@ -37,19 +37,19 @@ CREATE TABLE moderador (
 
 
 -- Tabela Pergunta Fechada
-CREATE TABLE pergFechada (
-    idPergFechada INT PRIMARY KEY,
-    Pergunta NVARCHAR(255),
+CREATE TABLE pergunta (
+    idPergunta INT PRIMARY KEY,
+    descricao NVARCHAR(255),
 	idApp INT,
 	FOREIGN KEY (idApp) REFERENCES app(idApp)
 );
 
---Opções
+--Opï¿½ï¿½es
 CREATE TABLE opcao(
 	idOpcao INT PRIMARY KEY,
     descricao NVARCHAR(255),
 	idPerguntaFechada INT,
-	FOREIGN KEY (idPerguntaFechada) REFERENCES pergFechada(idPergFechada)
+	FOREIGN KEY (idPerguntaFechada) REFERENCES pergunta(idPergunta)
 );
 
 
@@ -63,13 +63,6 @@ CREATE TABLE escolhaOpcaoUsuario(
 	FOREIGN KEY (idUser) REFERENCES usuario(idUser)
 );
 
--- Tabela Pergunta Aberta
-CREATE TABLE idPergAberta(
-    idPergAberta INT PRIMARY KEY,
-    Pergunta NVARCHAR(255),
-	idApp INT,
-	FOREIGN KEY (idApp) REFERENCES app(idApp)
-);
 
 -- Tabela Pergunta Aberta Resposta
 CREATE TABLE respostaAberta (
@@ -77,9 +70,8 @@ CREATE TABLE respostaAberta (
     idPergAberta INT,
 	idUser INT,
     Resposta NVARCHAR(255),
-    FOREIGN KEY (idPergAberta) REFERENCES idPergAberta(idPergAberta),
+    FOREIGN KEY (idPergAberta) REFERENCES pergunta(idPergunta),
 	FOREIGN KEY (idUser) REFERENCES usuario(idUser)
 );
-
 
 
