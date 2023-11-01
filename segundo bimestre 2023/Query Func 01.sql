@@ -1,3 +1,4 @@
+--1
 /*create function subEspec(@nomeEsp varchar(50))
 returns int
 begin
@@ -9,17 +10,22 @@ end
 
 select dbo.subEspec('Clinico Geral')*/
 
-/*
-create procedure subEspecProcedure(@nomeEsp varchar(50), @saida int output) as
+
+--2
+
+/*create procedure subEspecProcedure(@nomeEsp varchar(50), @saida int output) as
 begin
 	set @saida = (select count(e.codEspecializacao) from Especializacao e left join Especializacao eg
 	on e.codEspecializacao = eg.codEspecializacaoGenerica where e.nome = @nomeEsp)
 end
 
-declare @result int
-execute subEspecProcedure 'Clinico Geral', @saida = @result output
-print @result*/
+	declare @result int
+	execute subEspecProcedure 'Clinico Geral', @saida = @result output
+	print @result*/
 
+
+
+--3
 /*create function medSalarioClinica(@nomeClinica varchar(50))
 returns money
 begin
@@ -31,6 +37,9 @@ end
 
 select dbo.medSalarioClinica('Clinica A')*/
 
+
+
+--4
 /*create procedure medSalarioClinicaProc(@nomeClinica varchar(50),@saida money output)
 as
 begin
@@ -43,6 +52,9 @@ declare @result money
 execute medSalarioClinicaProc 'Clinica A', @saida = @result output
 print @result*/
 
+
+
+--5
 /*create function menorSalarioFun(@nomeMedico varchar(50))
 returns varchar(50)
 begin
@@ -57,6 +69,8 @@ end
 print dbo.menorSalarioFun('Ana Maria Silva')*/
 
 
+
+--6
 /*create function classAreaEsp(@nomeEspecializacao varchar(50))
 returns varchar(50)
 begin
@@ -78,8 +92,27 @@ end
 print dbo.classAreaEsp('Clinico Geral')*/
 
 
+--desafio
+create function idadeMedico(@nomeMedico varchar(50))
+returns int
+begin
+	declare @idade int
+	declare @mes int
+	declare @dia int
+	declare @dataNasc date
+	set @dataNasc = (select dataNascimento from Medico where nomeMedico = @nomeMedico)
+	set @idade = DATEDIFF(year, @dataNasc, CONVERT(date, getdate()))
+	set @mes = DATEDIFF(month, @dataNasc, CONVERT(date, getdate()))
+	set @dia =  DATEDIFF(year, @dataNasc, CONVERT(date, getdate()))
+	
+	if @mes>0
+		return @idade-1
+	else if @mes=0
+			if @dia<=0
+				return @idade
 
-
-
+	return @idade
+end
+print dbo.idadeMedico('Ana Maria Silva')		
 
 
