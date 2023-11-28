@@ -8,12 +8,7 @@ CREATE TABLE usuario (
 );
 
 
--- Tabela tutorial
-CREATE TABLE tutorial (
-    IdTutorial INT PRIMARY KEY,
-	nome NVARCHAR(255),
-    caminhoArquivo NVARCHAR(MAX)
-);
+
 
 -- Tabela APP
 CREATE TABLE app (
@@ -23,9 +18,7 @@ CREATE TABLE app (
 	JogoOuRede BIT,
     CaminhoImagem NVARCHAR(MAX)
 );
--- Ref App a Tutorial
-ALTER TABLE app
-ADD FOREIGN KEY (idTutorial) REFERENCES tutorial(IdTutorial);
+
 
 -- Tabela moderador
 CREATE TABLE moderador (
